@@ -1,0 +1,3 @@
+scitools-iris==3.7.0
+cf-python==3.16.0
+netcdf4==1.6.5
