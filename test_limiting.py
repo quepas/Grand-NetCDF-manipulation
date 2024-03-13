@@ -26,7 +26,7 @@ def limit_with_xarray(input_file: str, output_file: str, field_name: str,
 def limit_with_nctoolkit(input_file: str, output_file: str, field_name: str,
                          longitude_range: list[float, float], latitude_range: list[float, float]) -> None:
     from nctoolkit import open_data
-    dataset = open_data(str(input_file))
+    dataset = open_data(str(input_file), checks=True)
     dataset.crop(lon=longitude_range, lat=latitude_range)
     dataset.to_nc(output_file)
 
@@ -82,4 +82,4 @@ for library, test_fun in to_check.items():
     t0 = perf_counter()
     test_fun()
     t1 = perf_counter()
-    print(f"{library} took: {t1 - t0:.2f}s")
+    print(f"Limiting! {library} took: {t1 - t0:.2f}s")
